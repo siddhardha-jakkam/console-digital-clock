@@ -42,7 +42,6 @@ void start(int lim)
             t.h = 0;
         }
 
-        /* Ask the user every 10 seconds */
         if (t.s % lim == 0)
         {
             printf("\n\n1. Continue");
