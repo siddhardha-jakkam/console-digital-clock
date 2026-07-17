@@ -1,5 +1,5 @@
-import time
 import os
+import time
 import sys
 
 h = 0
@@ -11,8 +11,11 @@ def clear_screen():
     os.system("cls" if os.name == "nt" else "clear")
 
 
-def start(lim):
+def start(H, M, S):
     global h, m, s
+
+    x, y, z = H, M, S
+    count = 1
 
     while True:
         clear_screen()
@@ -34,8 +37,8 @@ def start(lim):
         if h == 24:
             h = 0
 
-        # Ask the user every 'lim' seconds
-        if s % lim == 0:
+        if h == H and m == M and s == S:
+
             print("\n1. Continue")
             print("2. Stop")
             print("3. Restart")
@@ -44,43 +47,59 @@ def start(lim):
             ch = int(input("\nEnter your choice: "))
 
             if ch == 1:
-                continue
+                count += 1
+                H = count * x
+                M = count * y
+                S = count * z
 
             elif ch == 2:
                 print(f"\nClock Stopped at {h:02d}:{m:02d}:{s:02d}")
-                time.sleep(2)
-                return
+
+                ck = int(input("Enter 1 to continue: "))
+
+                if ck == 1:
+                    count += 1
+                    H = count * x
+                    M = count * y
+                    S = count * z
+                else:
+                    sys.exit()
 
             elif ch == 3:
                 h = 0
                 m = 0
                 s = 0
 
+                H = x
+                M = y
+                S = z
+                count = 1
+
                 print("\nClock Restarted!")
                 time.sleep(1)
 
             elif ch == 4:
-                print("Program Terminated.")
                 sys.exit()
 
             else:
-                print("Invalid Choice!")
+                print("\nInvalid Choice!")
                 time.sleep(1)
 
 
 def main():
     while True:
         print("\n===== DIGITAL CLOCK =====")
+        print("Enter limited time (H M S):")
 
-        lim = int(input("Enter limit: "))
+        H, M, S = map(int, input().split())
 
-        print("1. Start Clock")
+        print("\n1. Start Clock")
         print("2. Exit")
 
         opt = int(input("Enter your option: "))
 
         if opt == 1:
-            start(lim)
+            start(H, M, S)
 
         elif opt == 2:
             print("Program Terminated.")
@@ -90,4 +109,5 @@ def main():
             print("Invalid Option!")
 
 
-main()
+if __name__ == "__main__":
+    main()
