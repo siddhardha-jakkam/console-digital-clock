@@ -11,9 +11,11 @@ struct clock
 
 struct clock t = {0, 0, 0};
 
-void start(int lim)
+void start(int H,int M,int S)
 {
     int ch;
+    int x=H,y=M,z=S;
+    int count=1;
 
     while (1)
     {
@@ -41,8 +43,8 @@ void start(int lim)
         {
             t.h = 0;
         }
-
-        if (t.s % lim == 0)
+        
+        if ( t.h==H && t.m==M && t.s==S )
         {
             printf("\n\n1. Continue");
             printf("\n2. Stop");
@@ -56,18 +58,42 @@ void start(int lim)
             {
                 case 1:
                     /* Continue running */
+                    count++;
+                    H=count*x;
+                    M=count*y;
+                    S=count*z;  
                     continue;
+                     
+
 
                 case 2:
                     printf("\nClock Stopped at %02d:%02d:%02d\n",
                            t.h, t.m, t.s);
                     Sleep(2000);
-                    return;
+                    printf("enter 1 to continue\n");
+                    int ck;
+                    scanf("%d",&ck);
+                    if(ck==1)
+                    {
+                        count++;
+                    H=count*x;
+                    M=count*y;
+                    S=count*z;  
+                    continue;
+                    }
+                    else{
+                        exit(0);
+                    }
+
 
                 case 3:
                     t.h = 0;
                     t.m = 0;
                     t.s = 0;
+                    H=x;
+                    M=y;
+                    S=z;
+                    count=1;
 
                     printf("\nClock Restarted!");
                     Sleep(1000);
@@ -87,14 +113,14 @@ void start(int lim)
 int main()
 {
     int opt;
-    int lim;
+    int H,M,S;
 
     while (1)
     {
         
         printf("\n===== DIGITAL CLOCK =====\n");
-        printf("enter limit\n");
-        scanf("%d",&lim);
+        printf("enter limitd time H : M : S :: \n");
+        scanf("%d%d%d",&H,&M,&S);
         printf("\n1. Start Clock");
         printf("\n2. Exit");
         printf("\nEnter your option: ");
@@ -104,7 +130,7 @@ int main()
         switch (opt)
         {
             case 1:
-                start(lim);
+                start(H,M,S);
                 break;
 
             case 2:
