@@ -62,6 +62,16 @@ void start(int H,int M,int S)
                     H=count*x;
                     M=count*y;
                     S=count*z;  
+                    if(S>60)
+                    {
+                        S=S-60;
+                        M=M+1;
+                    }
+                    if(M>60)
+                    {
+                        M=M=60;
+                        H=H+1;
+                    }
                     continue;
                      
 
@@ -78,7 +88,17 @@ void start(int H,int M,int S)
                         count++;
                     H=count*x;
                     M=count*y;
-                    S=count*z;  
+                    S=count*z; 
+                    if(S>60)
+                    {
+                        S=S-60;
+                        M=M+1;
+                    }
+                    if(M>60)
+                    {
+                        M=M=60;
+                        H=H+1;
+                    } 
                     continue;
                     }
                     else{
