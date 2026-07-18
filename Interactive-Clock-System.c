@@ -62,12 +62,12 @@ void start(int H,int M,int S)
                     H=count*x;
                     M=count*y;
                     S=count*z;  
-                    if(S>60)
+                    if(S>=60)
                     {
                         S=S-60;
                         M=M+1;
                     }
-                    if(M>60)
+                    if(M>=60)
                     {
                         M=M=60;
                         H=H+1;
@@ -89,12 +89,12 @@ void start(int H,int M,int S)
                     H=count*x;
                     M=count*y;
                     S=count*z; 
-                    if(S>60)
+                    if(S>=60)
                     {
                         S=S-60;
                         M=M+1;
                     }
-                    if(M>60)
+                    if(M>=60)
                     {
                         M=M=60;
                         H=H+1;
